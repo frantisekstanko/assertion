@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -euo pipefail
+
+MODIFIED_STAGED_FILES=$(git --no-pager diff --name-only --staged --diff-filter=d)
+
+if [[ -z "${MODIFIED_STAGED_FILES}" ]]; then
+    exit 0
+fi
+
+echo "${MODIFIED_STAGED_FILES}" | xargs npx prettier --write --ignore-unknown

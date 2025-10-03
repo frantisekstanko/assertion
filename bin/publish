@@ -1,0 +1,15 @@
+#!/bin/bash
+
+set -euo pipefail
+
+SCRIPT=$(realpath "$0")
+SCRIPT_DIR=$(dirname "${SCRIPT}")
+PROJECT_ROOT=$(git -C "${SCRIPT_DIR}" rev-parse --show-toplevel)
+
+cd "${PROJECT_ROOT}"
+
+npm run build
+npm run test
+npm run lint
+
+npm publish --access public

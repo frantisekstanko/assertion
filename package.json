@@ -1,0 +1,46 @@
+{
+  "name": "@frantisekstanko/assertion",
+  "version": "0.3.0",
+  "description": "Type-safe assertion library for TypeScript",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --bail",
+    "test:watch": "jest --watchAll",
+    "test:coverage": "jest --coverage",
+    "lint": "eslint src/**/*.ts && tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "assertion",
+    "typescript",
+    "type-guard",
+    "validation"
+  ],
+  "author": "Frantisek Stanko",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frantisekstanko/assertion.git"
+  },
+  "bugs": {
+    "url": "https://github.com/frantisekstanko/assertion/issues"
+  },
+  "homepage": "https://github.com/frantisekstanko/assertion#readme",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.32.0",
+    "jest": "^30.0.5",
+    "ts-jest": "^29.4.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.45.0"
+  }
+}
