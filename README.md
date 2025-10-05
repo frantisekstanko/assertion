@@ -1,6 +1,9 @@
 # assertion
 
+[![CI](https://github.com/frantisekstanko/assertion/actions/workflows/ci.yml/badge.svg)](https://github.com/frantisekstanko/assertion/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@frantisekstanko/assertion.svg)](https://www.npmjs.com/package/@frantisekstanko/assertion)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![codecov](https://codecov.io/gh/frantisekstanko/assertion/branch/main/graph/badge.svg)](https://codecov.io/gh/frantisekstanko/assertion)
 
 Type-safe assertion library for TypeScript with runtime validation and type narrowing.
 
