@@ -17,6 +17,7 @@ Type-safe assertion library for TypeScript with runtime validation and type narr
 - 🔒 **Runtime validation** - Validate unknown data at runtime
 - 📦 **Tree-shakeable** - Only bundle what you use
 - 🌐 **Universal** - Works in Node.js and browsers
+  (see [Browser Support](#browser-support))
 
 ## Installation
 
@@ -292,6 +293,20 @@ try {
 
 This approach maintains the **dependency inversion principle** - your core
 domain doesn't depend on external libraries.
+
+## Browser Support
+
+This library is **fully compatible with modern browsers**. It uses only standard
+JavaScript features available across all modern browser environments:
+
+- **No Node.js-specific APIs** - Zero dependencies on Node.js runtime features
+  like `fs`, `process`, or `path`
+- **Universal JavaScript** - Only uses standard APIs: `typeof`,
+  `Array.isArray()`, `isNaN()`, `isFinite()`, and the `URL` constructor
+- **Modern JavaScript** - Compiled to ES2022, supported by all current browsers
+
+You can use it directly in browser applications, web workers, or any JavaScript
+runtime without modification.
 
 ## License
 
