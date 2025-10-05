@@ -15,8 +15,12 @@ class CustomAssertion extends Assertion {
 
 describe('Assertion with custom exception', () => {
   it('should throw CustomAssertionException', () => {
-    expect(() => CustomAssertion.string(123)).toThrow(CustomException)
-    expect(() => CustomAssertion.string(123)).toThrow(Error)
+    expect(() => {
+      CustomAssertion.string(123)
+    }).toThrow(CustomException)
+    expect(() => {
+      CustomAssertion.string(123)
+    }).toThrow(Error)
   })
 
   it('should preserve custom exception properties', () => {
@@ -31,12 +35,18 @@ describe('Assertion with custom exception', () => {
   })
 
   it('should work with multiple assertion methods', () => {
-    expect(() => CustomAssertion.number('not a number')).toThrow(
-      CustomException,
-    )
-    expect(() => CustomAssertion.boolean(123)).toThrow(CustomException)
-    expect(() => CustomAssertion.array({})).toThrow(CustomException)
-    expect(() => CustomAssertion.object([])).toThrow(CustomException)
+    expect(() => {
+      CustomAssertion.number('not a number')
+    }).toThrow(CustomException)
+    expect(() => {
+      CustomAssertion.boolean(123)
+    }).toThrow(CustomException)
+    expect(() => {
+      CustomAssertion.array({})
+    }).toThrow(CustomException)
+    expect(() => {
+      CustomAssertion.object([])
+    }).toThrow(CustomException)
   })
 
   it('should preserve custom message with custom exception', () => {
