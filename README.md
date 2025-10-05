@@ -4,6 +4,8 @@
 [![npm version](https://img.shields.io/npm/v/@frantisekstanko/assertion.svg)](https://www.npmjs.com/package/@frantisekstanko/assertion)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![codecov](https://codecov.io/gh/frantisekstanko/assertion/branch/main/graph/badge.svg)](https://codecov.io/gh/frantisekstanko/assertion)
+[![Bundle Size](https://img.shields.io/bundlephobia/minzip/@frantisekstanko/assertion)](https://bundlephobia.com/package/@frantisekstanko/assertion)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8-blue.svg)](https://www.typescriptlang.org/)
 
 Type-safe assertion library for TypeScript with runtime validation and type narrowing.
 
