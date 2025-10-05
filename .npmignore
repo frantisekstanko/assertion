@@ -1,9 +1,0 @@
-.github/
-.githooks/
-bin/
-src/
-tests/
-eslint.config.mjs
-jest.config.js
-settings.local.json
-tsconfig.json
