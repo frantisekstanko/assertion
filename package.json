@@ -19,7 +19,7 @@
     "CHANGELOG.md"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --project tsconfig.build.json",
     "test": "jest --bail",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
