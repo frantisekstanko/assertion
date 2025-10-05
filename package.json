@@ -23,7 +23,7 @@
     "test": "jest --bail",
     "test:watch": "jest --watchAll",
     "test:coverage": "jest --coverage",
-    "lint": "eslint src/**/*.ts && tsc --noEmit",
+    "lint": "eslint . && tsc --noEmit",
     "prepublishOnly": "npm run build"
   },
   "keywords": [
