@@ -7,6 +7,7 @@ Type-safe assertion library for TypeScript with runtime validation and type narr
 ## Features
 
 - 🎯 **Type-safe** - Full TypeScript support with type narrowing
+- 🏗️ **[Custom exceptions](#custom-exception-classes)** - Use your own domain exceptions for Hexagonal/Clean Architecture
 - 🚀 **Zero dependencies** - Lightweight and fast
 - 🔒 **Runtime validation** - Validate unknown data at runtime
 - 📦 **Tree-shakeable** - Only bundle what you use
@@ -244,34 +245,48 @@ try {
 
 ### Custom Exception Classes
 
-You can extend the `Assertion` class to use your own custom exception class:
+**Keep your domain layer clean and vendor-agnostic** by using your own
+exception classes. This is especially valuable in Hexagonal/Clean Architecture
+where you want to avoid coupling your domain to third-party libraries.
+
+Extend the `Assertion` class to throw your own domain exceptions:
 
 ```typescript
 import { Assertion } from '@frantisekstanko/assertion'
 
-class ValidationError extends Error {
+// Your domain exception in the core layer
+class DomainValidationError extends Error {
   constructor(message: string) {
     super(message)
-    this.name = 'ValidationError'
+    this.name = 'DomainValidationError'
   }
 }
 
-class MyAssertion extends Assertion {
+// Create your domain-specific assertion class
+class DomainAssertion extends Assertion {
   protected static createException(message: string): Error {
-    return new ValidationError(message)
+    return new DomainValidationError(message)
   }
 }
 ```
 
-Now all assertions will throw `ValidationError` instead of `AssertionException`
+Now your domain layer only knows about `DomainValidationError`, not the
+assertion library:
 
 ```typescript
+// In your domain layer - no vendor coupling!
 try {
-  MyAssertion.string(123)
+  DomainAssertion.string(userInput)
+  DomainAssertion.email(email)
 } catch (error) {
-  console.log(error instanceof ValidationError) // true
+  if (error instanceof DomainValidationError) {
+    // Handle with your domain error handling strategy
+  }
 }
 ```
+
+This approach maintains the **dependency inversion principle** - your core
+domain doesn't depend on external libraries.
 
 ## License
 
