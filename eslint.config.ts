@@ -2,6 +2,9 @@ import eslint from '@eslint/js'
 import tseslint from 'typescript-eslint'
 
 export default [
+  {
+    ignores: ['node_modules/', 'dist/', 'tests/coverage/'],
+  },
   eslint.configs.recommended,
   ...tseslint.configs.strictTypeChecked,
   ...tseslint.configs.stylisticTypeChecked,
