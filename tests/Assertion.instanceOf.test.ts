@@ -25,7 +25,7 @@ describe('Assertion.instanceOf', () => {
     const error = new Error('test')
     expect(() => Assertion.instanceOf(error, Error)).not.toThrow()
 
-    const arr = new Array(1, 2, 3)
+    const arr = [1, 2, 3]
     expect(() => Assertion.instanceOf(arr, Array)).not.toThrow()
   })
 
