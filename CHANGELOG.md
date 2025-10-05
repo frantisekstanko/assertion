@@ -5,6 +5,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.0] - 2025-10-05
+
+### Changed
+
+- Migrated configuration files to TypeScript (`eslint.config.ts`, `jest.config.ts`)
+- Separated build configuration into `tsconfig.build.json`
+- Updated ESLint to check all files instead of only `src/**/*.ts`
+- Improved test code style with explicit arrow function braces for consistency
+- TypeScript array type preference set to `[]` notation
+
+### Added
+
+- `.nvmrc` file specifying Node.js 20 as the recommended version
+- Explicit ESLint ignores for `node_modules/`, `dist/`, and `tests/coverage/`
+- ESLint rule to allow empty functions in test files
+- `jiti` and `ts-node` dev dependencies for TypeScript execution support
+
 ## [0.4.1] - 2025-10-05
 
 ### Fixed
@@ -57,6 +74,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Full test coverage with Jest
 - TypeScript declaration files
 
+[0.5.0]: https://github.com/frantisekstanko/assertion/compare/v0.4.1...v0.5.0
 [0.4.1]: https://github.com/frantisekstanko/assertion/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/frantisekstanko/assertion/compare/v0.3.0...v0.4.0
 [0.3.0]: https://github.com/frantisekstanko/assertion/releases/tag/v0.3.0
