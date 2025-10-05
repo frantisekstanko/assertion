@@ -20,4 +20,10 @@ export default [
       '@typescript-eslint/no-extraneous-class': 'off',
     },
   },
+  {
+    files: ['tests/**/*.ts'],
+    rules: {
+      '@typescript-eslint/no-empty-function': 'off',
+    },
+  },
 ]
