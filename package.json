@@ -1,6 +1,6 @@
 {
   "name": "@frantisekstanko/assertion",
-  "version": "0.5.2",
+  "version": "1.0.0",
   "description": "Type-safe assertion library for TypeScript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
