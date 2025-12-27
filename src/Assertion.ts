@@ -493,4 +493,70 @@ export class Assertion {
         `Expected object to have ${String(count)} ${keyWord}, got ${String(keyCount)}`,
     )
   }
+
+  /**
+   * Asserts that value equals other value.
+   * @param value - The value to check
+   * @param other - The value to compare against
+   * @param message - Optional custom error message
+   * @throws {Error} If the values are not equal
+   */
+  public static equals(value: unknown, other: unknown, message?: string): void {
+    if (value === other) {
+      return
+    }
+
+    if (Array.isArray(value) !== Array.isArray(other)) {
+      throw this.createException(
+        message ??
+          `Expected values to be equal, but one is an array and the other is not`,
+      )
+    }
+
+    if (
+      typeof value === 'object' &&
+      value !== null &&
+      typeof other === 'object' &&
+      other !== null
+    ) {
+      const kind = Array.isArray(value) ? 'arrays' : 'objects'
+      const valueKeys = Object.keys(value as Record<string, unknown>)
+
+      if (
+        valueKeys.length !==
+        Object.keys(other as Record<string, unknown>).length
+      ) {
+        throw this.createException(
+          message ??
+            `Expected ${kind} to be equal, but they have different number of ${kind === 'arrays' ? 'elements' : 'keys'}`,
+        )
+      }
+
+      for (const key of valueKeys) {
+        if (!(key in (other as Record<string, unknown>))) {
+          throw this.createException(
+            message ?? `Expected ${kind} to be equal, but they differ`,
+          )
+        }
+        try {
+          this.equals(
+            (value as Record<string, unknown>)[key],
+            (other as Record<string, unknown>)[key],
+            message,
+          )
+        } catch {
+          throw this.createException(
+            message ?? `Expected ${kind} to be equal, but they differ`,
+          )
+        }
+      }
+
+      return
+    }
+
+    throw this.createException(
+      message ??
+        `Expected value to equal ${String(other)}, got ${String(value)}`,
+    )
+  }
 }
