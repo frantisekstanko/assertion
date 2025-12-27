@@ -463,4 +463,34 @@ export class Assertion {
         `Expected an instance of ${constructor.name}, got ${actualType}`,
     )
   }
+
+  /**
+   * Asserts that a plain object has exactly the given number of keys.
+   * @param value - The object to check
+   * @param count - The expected number of keys
+   * @param message - Optional custom error message
+   * @throws {Error} If the object does not have the expected number of keys
+   */
+  public static count(
+    value: unknown,
+    count: number,
+    message?: string,
+  ): asserts value is Record<string, unknown> {
+    if (Array.isArray(value) || typeof value !== 'object' || value === null) {
+      throw this.createException(message ?? 'Expected an object to count keys')
+    }
+
+    const keyCount = Object.keys(value).length
+
+    if (keyCount === count) {
+      return
+    }
+
+    const keyWord = count === 1 ? 'key' : 'keys'
+
+    throw this.createException(
+      message ??
+        `Expected object to have ${String(count)} ${keyWord}, got ${String(keyCount)}`,
+    )
+  }
 }
