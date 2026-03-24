@@ -5,6 +5,28 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.1.0] - 2026-03-24
+
+### Added
+
+- `Assertion.count(value, count, message?)` - asserts a plain object has exactly
+  the given number of keys; rejects arrays and non-objects
+- `Assertion.equals(value, other, message?)` - deep equality for primitives,
+  plain objects, and arrays; arrays and plain objects are never considered equal
+  to each other
+- `Assertion.objectOrEmptyArray(value, message?)` - asserts a value is a plain
+  object or an empty array
+
+### Fixed
+
+- `Assertion.count()` error message now uses the correct singular form ("1 key"
+  instead of "1 keys")
+
+### Removed
+
+- `Assertion.regex()` - removed from documentation; this method was listed in
+  the README since v0.3.0 but was never implemented
+
 ## [1.0.0] - 2025-10-09
 
 Stable release

@@ -197,15 +197,6 @@ Assertion.maxLength([1, 2], 5) // ✓ passes
 Assertion.maxLength('toolong', 3) // ✗ throws
 ```
 
-#### `Assertion.regex(value, pattern, message?)`
-
-Assert value is a string matching a regular expression.
-
-```typescript
-Assertion.regex('abc123', /^[a-z]+[0-9]+$/) // ✓ passes
-Assertion.regex('123abc', /^[a-z]+[0-9]+$/) // ✗ throws
-```
-
 #### `Assertion.email(value, message?)`
 
 Assert value is a valid email address.
@@ -242,6 +233,31 @@ class MyClass {}
 const instance = new MyClass()
 Assertion.instanceOf(instance, MyClass) // ✓ passes
 Assertion.instanceOf({}, MyClass) // ✗ throws
+```
+
+#### `Assertion.count(value, count, message?)`
+
+Assert a plain object has exactly the given number of keys.
+
+```typescript
+Assertion.count({ a: 1, b: 2 }, 2) // ✓ passes
+Assertion.count({}, 0) // ✓ passes
+Assertion.count({ a: 1 }, 2) // ✗ throws
+Assertion.count([], 0) // ✗ throws
+```
+
+#### `Assertion.equals(value, other, message?)`
+
+Assert two values are deeply equal. Supports primitives, plain objects, and
+arrays. Arrays and plain objects are never considered equal to each other.
+
+```typescript
+Assertion.equals(1, 1) // ✓ passes
+Assertion.equals({ a: 1 }, { a: 1 }) // ✓ passes
+Assertion.equals([1, 2], [1, 2]) // ✓ passes
+Assertion.equals(1, 2) // ✗ throws
+Assertion.equals({ a: 1 }, { a: 2 }) // ✗ throws
+Assertion.equals([1], { 0: 1 }) // ✗ throws
 ```
 
 ### Error Handling
