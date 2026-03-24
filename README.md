@@ -135,6 +135,18 @@ Assertion.object([]) // ✗ throws
 Assertion.object(null) // ✗ throws
 ```
 
+#### `Assertion.objectOrEmptyArray(value, message?)`
+
+Assert value is a plain object or an empty array.
+
+```typescript
+Assertion.objectOrEmptyArray({}) // ✓ passes
+Assertion.objectOrEmptyArray({ a: 1 }) // ✓ passes
+Assertion.objectOrEmptyArray([]) // ✓ passes
+Assertion.objectOrEmptyArray([1, 2]) // ✗ throws
+Assertion.objectOrEmptyArray(null) // ✗ throws
+```
+
 #### `Assertion.boolean(value, message?)`
 
 Assert value is a boolean.

@@ -559,4 +559,35 @@ export class Assertion {
         `Expected value to equal ${String(other)}, got ${String(value)}`,
     )
   }
+
+  /**
+   * Asserts that a value is a plain object or an empty array.
+   * @param value - The value to check
+   * @param message - Optional custom error message
+   * @throws {Error} If the value is not a plain object or empty array
+   */
+  public static objectOrEmptyArray(
+    value: unknown,
+    message?: string,
+  ): asserts value is Record<string, unknown> | unknown[] {
+    if (Array.isArray(value)) {
+      if (value.length === 0) {
+        return
+      }
+
+      throw this.createException(
+        message ?? 'Expected an object or empty array, got a non-empty array',
+      )
+    }
+
+    if (typeof value === 'object' && value !== null) {
+      return
+    }
+
+    throw this.createException(
+      message ??
+        'Expected an object or empty array, got ' +
+          (value === null ? 'null' : typeof value),
+    )
+  }
 }
