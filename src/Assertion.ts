@@ -463,4 +463,131 @@ export class Assertion {
         `Expected an instance of ${constructor.name}, got ${actualType}`,
     )
   }
+
+  /**
+   * Asserts that a plain object has exactly the given number of keys.
+   * @param value - The object to check
+   * @param count - The expected number of keys
+   * @param message - Optional custom error message
+   * @throws {Error} If the object does not have the expected number of keys
+   */
+  public static count(
+    value: unknown,
+    count: number,
+    message?: string,
+  ): asserts value is Record<string, unknown> {
+    if (Array.isArray(value) || typeof value !== 'object' || value === null) {
+      throw this.createException(message ?? 'Expected an object to count keys')
+    }
+
+    const keyCount = Object.keys(value).length
+
+    if (keyCount === count) {
+      return
+    }
+
+    const keyWord = count === 1 ? 'key' : 'keys'
+
+    throw this.createException(
+      message ??
+        `Expected object to have ${String(count)} ${keyWord}, got ${String(keyCount)}`,
+    )
+  }
+
+  /**
+   * Asserts that value equals other value.
+   * @param value - The value to check
+   * @param other - The value to compare against
+   * @param message - Optional custom error message
+   * @throws {Error} If the values are not equal
+   */
+  public static equals(value: unknown, other: unknown, message?: string): void {
+    if (value === other) {
+      return
+    }
+
+    if (Array.isArray(value) !== Array.isArray(other)) {
+      throw this.createException(
+        message ??
+          `Expected values to be equal, but one is an array and the other is not`,
+      )
+    }
+
+    if (
+      typeof value === 'object' &&
+      value !== null &&
+      typeof other === 'object' &&
+      other !== null
+    ) {
+      const kind = Array.isArray(value) ? 'arrays' : 'objects'
+      const valueKeys = Object.keys(value as Record<string, unknown>)
+
+      if (
+        valueKeys.length !==
+        Object.keys(other as Record<string, unknown>).length
+      ) {
+        throw this.createException(
+          message ??
+            `Expected ${kind} to be equal, but they have different number of ${kind === 'arrays' ? 'elements' : 'keys'}`,
+        )
+      }
+
+      for (const key of valueKeys) {
+        if (!(key in (other as Record<string, unknown>))) {
+          throw this.createException(
+            message ?? `Expected ${kind} to be equal, but they differ`,
+          )
+        }
+        try {
+          this.equals(
+            (value as Record<string, unknown>)[key],
+            (other as Record<string, unknown>)[key],
+            message,
+          )
+        } catch {
+          throw this.createException(
+            message ?? `Expected ${kind} to be equal, but they differ`,
+          )
+        }
+      }
+
+      return
+    }
+
+    throw this.createException(
+      message ??
+        `Expected value to equal ${String(other)}, got ${String(value)}`,
+    )
+  }
+
+  /**
+   * Asserts that a value is a plain object or an empty array.
+   * @param value - The value to check
+   * @param message - Optional custom error message
+   * @throws {Error} If the value is not a plain object or empty array
+   */
+  public static objectOrEmptyArray(
+    value: unknown,
+    message?: string,
+  ): asserts value is Record<string, unknown> | unknown[] {
+    if (Array.isArray(value)) {
+      if (value.length === 0) {
+        return
+      }
+
+      throw this.createException(
+        message ?? 'Expected an object or empty array, got a non-empty array',
+      )
+    }
+
+    if (typeof value === 'object' && value !== null) {
+      return
+    }
+
+    throw this.createException(
+      message ??
+        'Expected an object or empty array, got ' +
+          (value === null ? 'null' : typeof value),
+    )
+  }
 }
